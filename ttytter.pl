@@ -2140,7 +2140,7 @@ sub dmrefresh {
 		if ($dm_first_time) {
 			print $stdout
 			"-- checking for most recent direct messages:\n";
-			$disp_max = 2;
+			$disp_max = 5;
 			$interactive = 1;
 		}
 		for($i = $disp_max; $i > 0; $i--) {
