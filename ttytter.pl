@@ -326,7 +326,6 @@ if ($help) {
   prinput('/help'); exit;
 }
 $anonymous ||= 0;
-print "help = $help\n"; exit;
 undef $user if ($anonymous);
 if ($ssl) {
 	print $stdout "-- using SSL for default URLs.\n";
