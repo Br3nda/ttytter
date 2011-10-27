@@ -223,7 +223,7 @@ sub tracktags_makearray {
 		} else {
 			$l = $k;
 		}
-			
+
 		if ($w{$l}) {
 			print $stdout
 			"-- warning: dropping duplicate track term \"$l\"\n";
@@ -240,7 +240,7 @@ sub tracktags_makearray {
 	$track = join(' ', @tracktags);
 	&compile_tracktags;
 }
-	
+
 # run when array is altered (based on @kellyterryjones' code)
 sub compile_tracktags {
 	@trackstrings = ();
@@ -578,7 +578,7 @@ sub standardtweet {
 		my ($time, $ts) = &wraptime($ref->{'created_at'});
 		$tweet = "[$ts] $tweet";
 	}
-	
+
 	# pull it all together
 	$tweet = &wwrap($tweet, ($wrapseq <= 1) ? ((&$prompt(1))[1]) : 0)
 		if ($wrap); # remember to account for prompt length on #1
@@ -624,7 +624,7 @@ sub defaulttweettype {
 		} elsif ($tweet =~ /\@$whoami/i) {
 			# if I'm in the tweet, colour red
 			return 'reply';
-		} 
+		}
 	}
 	if ($ref->{'class'} eq 'search') { # anonymous allows this too
 		# if this is a search result, colour cyan
@@ -901,7 +901,7 @@ sub updatecheck {
 		} elsif (0+$TTYtter_VERSION > $maj ||
 				(0+$TTYtter_VERSION == $maj &&
 				 $TTYtter_PATCH_VERSION > $min)) {
-			$vs = 
+			$vs =
 	"** REMINDER: you are using a beta or unofficial release\n";
 		} else {
 			$vs =
@@ -942,7 +942,7 @@ for(;;) {
 	if (length($status) && $phase) {
 		print "post attempt "; $rv = &updatest($status, 0);
 	} else {
-		print "test-login "; 
+		print "test-login ";
 		$data = &backticks($baseagent, '/dev/null', undef,
 					$url, undef, @wind);
 		$rv = $?;
@@ -1025,7 +1025,7 @@ if ($daemon) {
 
 print <<"EOF";
 
-######################################################        +oo=========oo+ 
+######################################################        +oo=========oo+
          ${EM}TTYtter ${TTYtter_VERSION}.${TTYtter_PATCH_VERSION} (c)2009 cameron kaiser${OFF}                 @             @
 EOF
 $e = <<'EOF';
@@ -1139,7 +1139,7 @@ print $stdout "*** invalid UTF-8: partial delete of a wide character?\n";
 
 	if (!$slowpost && !$verify && # we assume you know what you're doing!
 		($_ eq 'h' || $_ eq 'help' || $_ eq 'quit' || $_ eq 'q')) {
-		
+
 		&add_history($_);
 		print $stdout "*** did you mean /$_ ?\n";
 		print $stdout "*** to send this as a command, type /%%\n";
@@ -1204,7 +1204,7 @@ print $stdout "*** invalid UTF-8: partial delete of a wide character?\n";
 			print $stdout "\t$i\t$history[($i-1)]\n";
 		}
 		return 0;
-	}	
+	}
 
 	&add_history($_);
 
@@ -1426,7 +1426,7 @@ print $stdout "*** invalid UTF-8: partial delete of a wide character?\n";
 			print $stdout "${EM}<<< TRENDING TOPICS >>>${OFF}\n";
 			# this is moderate paranoia
 			foreach $i (keys %{ $t }) {
-				foreach $j (@{ $t->{$i} }) {		
+				foreach $j (@{ $t->{$i} }) {
 					my $k = &descape($j->{'query'});
 					print $stdout "/search $k\n";
 					$k =~ s/\sOR\s/ /g;
@@ -1439,7 +1439,7 @@ print $stdout "*** invalid UTF-8: partial delete of a wide character?\n";
 		}
 		return 0;
 	}
-		
+
 	1 if (s/^\/#([^\s]+)/\/tron #\1/);
 	# /# command falls through to tron
 	if (s/^\/tron\s+// && s/\s*$// && length) {
@@ -1547,9 +1547,9 @@ print $stdout "*** invalid UTF-8: partial delete of a wide character?\n";
    /dm and /dmagain for DMs.   +Ba::;oaa*$Aa=aA$*aa=;::$B:
                                  ,===O@BOOOOOOOOO#@$===,
    /replies                          o@BOOOOOOOOO#@+
-      shows replies and mentions.    o@BOB@B$B@BO#@+    
-                                     o@*.a@o a@o.$@+     
-   /quit resumes your boring life.   o@B$B@o a@A$#@+  
+      shows replies and mentions.    o@BOB@B$B@BO#@+
+                                     o@*.a@o a@o.$@+
+   /quit resumes your boring life.   o@B$B@o a@A$#@+
 EOF
 		if ($termrl) {
 			$termrl->readline("PRESS RETURN/ENTER> ");
@@ -1563,8 +1563,8 @@ EOF
 |                 |  /whois username            displays info about username
 | See the TTYtter |  /again username            views their most recent tweets
 |  home page for  |  /wagain username           combines them all
-|  complete list  |  
-|                 |  you can also FOLLOW or LEAVE a username (no slash) 
+|  complete list  |
+|                 |  you can also FOLLOW or LEAVE a username (no slash)
 +-----------------+  or send them a DM via D username message (no slash)
 
 +--- TWEET AND DM SELECTION -------------------------------------------------+
@@ -1636,7 +1636,7 @@ EOF
 # add +count parameter or page number?
 		my $mode = $1;
 		my $uname = $3;
-		
+
 		$uname =~ s/^\@//;
 		$readline_completion{'@'.$uname}++ if ($termrl);
 		print $stdout "-- synchronous /again command for $uname\n"
@@ -1693,7 +1693,7 @@ $my_json_ref->[(&min($print_max,scalar(@{ $my_json_ref }))-1)]->{'created_at'});
 			my $verified =
 				($my_json_ref->{'verified'} eq 'true') ?
 				"${EM}(Verified Account)${OFF}" : '';
-			print $stdout <<"EOF"; 
+			print $stdout <<"EOF";
 
 ${CCprompt}@{[ &descape($my_json_ref->{'name'}) ]}${OFF} ($uname) (f:$my_json_ref->{'friends_count'}/$my_json_ref->{'followers_count'}) (u:$my_json_ref->{'statuses_count'}) $verified
 EOF
@@ -1701,7 +1701,7 @@ EOF
 "\"@{[ &descape($my_json_ref->{'description'}) ]}\"\n"
 				if (length($my_json_ref->{'description'}));
 			if (length($my_json_ref->{'url'})) {
-				$sturl = 
+				$sturl =
 				$urlshort = &descape($my_json_ref->{'url'});
 				print $stdout "${EM}URL:${OFF}\t\t$urlshort\n";
 			}
@@ -1715,7 +1715,7 @@ EOF
 			unless ($anonymous || $whoami eq $uname) {
 				my $g =
 		&grabjson("$frurl?user_a=$whoami&user_b=$uname", 0);
-				print $stdout 
+				print $stdout
 	"${EM}Do you follow${OFF} this user? ... ${EM}$g->{'literal'}${OFF}\n"
 					if (ref($g) eq 'HASH');
 				my $g =
@@ -1731,7 +1731,7 @@ EOF
 		}
 		return 0;
 	}
-		
+
 	if ($_ eq '/again' || $_ eq '/a') { # the asynchronous form
 #TODO
 # add count parameter or page number?
@@ -1792,7 +1792,7 @@ EOF
 					"-- no such tweet (yet?): $code\n";
 				return 0;
 			}
-		} 
+		}
 		my $text = &descape($tweet->{'text'});
 		# findallurls
 		while ($text
@@ -2100,7 +2100,7 @@ sub sub_helper {
 		$q = 1;
 	} else {
 		$q = -(0+$s);
-	} 
+	}
 	if ($q) {
 		my $j;
 		my $c;
@@ -2277,7 +2277,7 @@ sub notifier_growl {
 			"documentation for how to do this.\n");
 		if (!defined($class)) {
 			$class = 'Growl support activated';
-			$text = 
+			$text =
 'You can configure notifications for TTYtter in the Growl preference pane.';
 		}
 	}
@@ -2435,7 +2435,7 @@ sub update_effpause {
 			$rate_limit_rate =
 				$rate_limit_ref->{'hourly_limit'};
 			if ($rate_limit_left < 10) {
-				$estring = 
+				$estring =
 "*** warning: $rate_limit_left API requests remain";
 				if ($pause eq 'auto') {
 					$estring .=
@@ -2476,7 +2476,7 @@ sub update_effpause {
 		($last_rate_limit < $rate_limit_rate) ? ' INCREASED to':
 		($last_rate_limit > $rate_limit_rate) ? ' REDUCED to':
 					'';
-			$notify_rate = 
+			$notify_rate =
 "-- notification: API rate limit is${adverb} ${rate_limit_rate} req/hr\n"
 				if ($last_rate_limit != $rate_limit_rate);
 			$last_rate_limit = $rate_limit_rate;
@@ -2635,7 +2635,7 @@ sub backticks {
 	} else {
 		$in_backticks = 1;
 		if (length($rerr)) {
-			close(STDERR); 
+			close(STDERR);
 			open(STDERR, ">$rerr");
 		}
 		if (length($rout)) {
@@ -2675,7 +2675,7 @@ sub grabjson {
 	#undef $/; $data = <STDIN>;
 
 	# count needs to be removed for the default case due to show, etc.
-	$xurl = ($last_id) ? 
+	$xurl = ($last_id) ?
 		((($url =~ /\?/) ? '&' : '?')."since_id=$last_id")
 			: "";
 	$xurl .= ((length($xurl)) ? "&count=$count" :
@@ -2938,7 +2938,7 @@ sub refresh {
 				} else { # did find, so splice
 					splice(@{ $my_json_ref }, $m, 0,
 						$j);
-				} 
+				}
 				$l++;
 			}
 		}
@@ -2950,7 +2950,7 @@ sub refresh {
 	$stdout "-- id bookmark is $last_id, rollback is $relative_last_id.\n"
 		if ($verbose);
 	&$conclude;
-} 
+}
 
 sub tdisplay { # used by both synchronous /again and asynchronous refreshes
 	my $my_json_ref = shift;
@@ -2992,7 +2992,7 @@ sub tdisplay { # used by both synchronous /again and asynchronous refreshes
 			$wrapseq++;
 			$key = substr($alphabet, $tweet_counter/10, 1) .
 				$tweet_counter % 10;
-			$tweet_counter = 
+			$tweet_counter =
 				($tweet_counter == 259) ? $mini_split :
 				($tweet_counter == ($mini_split - 1))
 					? $back_split :
@@ -3049,7 +3049,7 @@ sub dmrefresh {
 			$wrapseq++;
 			$key = substr($alphabet, $dm_counter/10, 1) .
 				$dm_counter % 10;
-			$dm_counter = 
+			$dm_counter =
 				($dm_counter == 259) ? 0 :
 				($dm_counter+1);
 			$j->{'menu_select'} = $key;
@@ -3064,7 +3064,7 @@ sub dmrefresh {
 	$dm_first_time = 0 if ($last_dm || !scalar(@{ $my_json_ref }));
 	print $stdout "-- dm bookmark is $last_dm.\n" if ($verbose);
 	&$dmconclude;
-}	
+}
 
 sub wherecheck {
 	my ($prompt, $filename, $fatal) = (@_);
@@ -3174,7 +3174,7 @@ sub wwrap {
 		warn
 		"-- pathologic string somehow failed wordwrap! \"$string\"\n";
 		return $buf;
-	}               
+	}
 	1 while ($buf =~ s/\n\n\n/\n\n/s); # mostly paranoia
 	$buf =~ s/[ \t]+$//;
 	return $buf;

@@ -248,7 +248,7 @@
    FFSL, with the proviso that their modifications be clearly marked, as
    specified below:
 
-             [3]Creative Commons License-[4][somerights20.png] 
+             [3]Creative Commons License-[4][somerights20.png]
              This work is licensed under a [5]Creative Commons
                     Attribution-ShareAlike 2.5 License.
 
